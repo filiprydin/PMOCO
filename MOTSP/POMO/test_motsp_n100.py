@@ -31,6 +31,7 @@ import hvwfg
 from matplotlib import pyplot as plt
 import matplotlib as mpl
 mpl.style.use('default')
+import tikzplotlib
 ##########################################################################################
 # parameters
 env_params = {
@@ -53,11 +54,11 @@ tester_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
     'model_load': {
-        'path': './result/saved_tsp100_model',  # directory path of pre-trained model and log files saved.
+        'path': './result/saved_TSP100_model',  # directory path of pre-trained model and log files saved.
         'epoch': 200, 
     },
-    'test_episodes': 100, 
-    'test_batch_size': 100,
+    'test_episodes': 50, 
+    'test_batch_size': 50,
     'augmentation_enable': True,
     'aug_factor': 1, #64,
     'aug_batch_size': 100 
@@ -134,6 +135,8 @@ def main(n_sols = 101):
     plt.plot(sols[:,0],sols[:,1], marker = 'o', c = 'C1',ms = 3,  label='PSL-MOCO (Ours)')
     
     plt.legend()
+    tikzplotlib.save("temp")
+    plt.show()
     
     #ref = np.array([15,15])    #20
     #ref = np.array([30,30])   #50

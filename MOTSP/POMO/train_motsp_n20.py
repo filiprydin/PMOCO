@@ -19,6 +19,7 @@ import logging
 from utils.utils import create_logger, copy_all_src
 
 from MOTSPTrainer import TSPTrainer as Trainer
+from MOTSPTrainer_HV import TSPTrainerHV as TrainerHV
 
 ##########################################################################################
 # parameters
@@ -26,6 +27,8 @@ env_params = {
     'problem_size': 20,
     'pomo_size': 20,
 }
+
+training_method = "HV"
 
 model_params = {
     'embedding_dim': 128,
@@ -52,8 +55,10 @@ optimizer_params = {
 trainer_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
-    'epochs': 200,
-    'train_episodes': 100 * 1000,
+    'reference': [15, 15], # Only relevant if training method is "HV"
+    'n_prefs': 20, # Only relevant if training method is "HV"
+    'epochs': 10,
+    'train_episodes': 100 * 100,
     'train_batch_size': 64,
     'logging': {
         'model_save_interval': 5,
@@ -90,10 +95,16 @@ def main():
     create_logger(**logger_params)
     _print_config()
 
-    trainer = Trainer(env_params=env_params,
-                      model_params=model_params,
-                      optimizer_params=optimizer_params,
-                      trainer_params=trainer_params)
+    if training_method == "Obj":
+        trainer = Trainer(env_params=env_params,
+                        model_params=model_params,
+                        optimizer_params=optimizer_params,
+                        trainer_params=trainer_params)
+    else:
+        trainer = TrainerHV(env_params=env_params,
+                        model_params=model_params,
+                        optimizer_params=optimizer_params,
+                        trainer_params=trainer_params)
 
     copy_all_src(trainer.result_folder)
 
@@ -111,6 +122,7 @@ def _print_config():
     logger = logging.getLogger('root')
     logger.info('DEBUG_MODE: {}'.format(DEBUG_MODE))
     logger.info('USE_CUDA: {}, CUDA_DEVICE_NUM: {}'.format(USE_CUDA, CUDA_DEVICE_NUM))
+    logger.info('Training Method: {}'.format(training_method))
     [logger.info(g_key + "{}".format(globals()[g_key])) for g_key in globals().keys() if g_key.endswith('params')]
 
 ##########################################################################################

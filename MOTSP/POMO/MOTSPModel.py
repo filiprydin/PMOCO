@@ -86,7 +86,6 @@ class TSP_Encoder(nn.Module):
 
     def forward(self, data):
         # data.shape: (batch, problem, 2)
-
         embedded_input = self.embedding(data)
         # shape: (batch, problem, embedding)
 

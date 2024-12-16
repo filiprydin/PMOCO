@@ -31,6 +31,7 @@ import hvwfg
 from matplotlib import pyplot as plt
 import matplotlib as mpl
 mpl.style.use('default')
+import tikzplotlib
 ##########################################################################################
 # parameters
 env_params = {
@@ -134,6 +135,8 @@ def main(n_sols = 101):
     plt.plot(sols[:,0],sols[:,1], marker = 'o', c = 'C1',ms = 3,  label='PSL-MOCO (Ours)')
      
     plt.legend()
+    tikzplotlib.save("temp")
+    plt.show()
     
     ref = np.array([15,15])    #20
     #ref = np.array([30,30])   #50
