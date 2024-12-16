@@ -77,7 +77,7 @@ class TSPTrainerHV:
             self.result_log.append('train_loss', epoch, train_loss)
 
             # LR Decay
-            self.scheduler.step()
+            #self.scheduler.step()
 
             ############################
             # Logs & Checkpoint

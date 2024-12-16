@@ -1,0 +1,343 @@
+[2024-12-16 09:53:25] train_motsp_n20.py(123) : DEBUG_MODE: False
+[2024-12-16 09:53:25] train_motsp_n20.py(124) : USE_CUDA: True, CUDA_DEVICE_NUM: 0
+[2024-12-16 09:53:25] train_motsp_n20.py(125) : Training Method: HV
+[2024-12-16 09:53:25] train_motsp_n20.py(126) : env_params{'problem_size': 20, 'pomo_size': 20}
+[2024-12-16 09:53:25] train_motsp_n20.py(126) : model_params{'embedding_dim': 128, 'sqrt_embedding_dim': 11.313708498984761, 'encoder_layer_num': 6, 'qkv_dim': 16, 'head_num': 8, 'logit_clipping': 10, 'ff_hidden_dim': 512, 'eval_type': 'argmax'}
+[2024-12-16 09:53:25] train_motsp_n20.py(126) : optimizer_params{'optimizer': {'lr': 0.0001, 'weight_decay': 1e-06}, 'scheduler': {'milestones': [180], 'gamma': 0.1}}
+[2024-12-16 09:53:25] train_motsp_n20.py(126) : trainer_params{'use_cuda': True, 'cuda_device_num': 0, 'reference': [15, 15], 'n_prefs': 20, 'epochs': 100, 'train_episodes': 5000, 'train_batch_size': 64, 'logging': {'model_save_interval': 5, 'img_save_interval': 10, 'log_image_params_1': {'json_foldername': 'log_image_style', 'filename': 'style_tsp_20.json'}, 'log_image_params_2': {'json_foldername': 'log_image_style', 'filename': 'style_loss_1.json'}}, 'model_load': {'enable': False, 'path': './result/saved_tsp20_model', 'epoch': 200}}
+[2024-12-16 09:53:25] train_motsp_n20.py(126) : logger_params{'log_file': {'desc': 'train__tsp_n20', 'filename': 'run_log', 'filepath': './result/20241216_095321_train__tsp_n20'}}
+[2024-12-16 09:53:26] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 09:53:27] MOTSPTrainer_HV.py(131) : Epoch   1: Train  64/5000(1.3%)  HV: 0.1702,  Loss: -0.0556
+[2024-12-16 09:53:28] MOTSPTrainer_HV.py(131) : Epoch   1: Train 128/5000(2.6%)  HV: 0.1985,  Loss: -0.0762
+[2024-12-16 09:53:29] MOTSPTrainer_HV.py(131) : Epoch   1: Train 192/5000(3.8%)  HV: 0.2263,  Loss: -0.0916
+[2024-12-16 09:53:30] MOTSPTrainer_HV.py(131) : Epoch   1: Train 256/5000(5.1%)  HV: 0.2498,  Loss: -0.0957
+[2024-12-16 09:53:30] MOTSPTrainer_HV.py(131) : Epoch   1: Train 320/5000(6.4%)  HV: 0.2698,  Loss: -0.1007
+[2024-12-16 09:53:31] MOTSPTrainer_HV.py(131) : Epoch   1: Train 384/5000(7.7%)  HV: 0.2841,  Loss: -0.1087
+[2024-12-16 09:53:32] MOTSPTrainer_HV.py(131) : Epoch   1: Train 448/5000(9.0%)  HV: 0.2939,  Loss: -0.1138
+[2024-12-16 09:53:33] MOTSPTrainer_HV.py(131) : Epoch   1: Train 512/5000(10.2%)  HV: 0.3016,  Loss: -0.1178
+[2024-12-16 09:53:34] MOTSPTrainer_HV.py(131) : Epoch   1: Train 576/5000(11.5%)  HV: 0.3104,  Loss: -0.1252
+[2024-12-16 09:53:35] MOTSPTrainer_HV.py(131) : Epoch   1: Train 640/5000(12.8%)  HV: 0.3154,  Loss: -0.1280
+[2024-12-16 09:54:35] MOTSPTrainer_HV.py(136) : Epoch   1: Train (100%)  HV: 0.3581, Loss: -0.1504
+[2024-12-16 09:54:35] MOTSPTrainer_HV.py(86) : Epoch   1/100: Time Est.: Elapsed[1.15m], Remain[1.90h]
+[2024-12-16 09:54:35] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 09:54:35] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 09:55:44] MOTSPTrainer_HV.py(136) : Epoch   2: Train (100%)  HV: 0.3963, Loss: -0.1611
+[2024-12-16 09:55:44] MOTSPTrainer_HV.py(86) : Epoch   2/100: Time Est.: Elapsed[2.30m], Remain[1.88h]
+[2024-12-16 09:55:44] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 09:56:53] MOTSPTrainer_HV.py(136) : Epoch   3: Train (100%)  HV: 0.4106, Loss: -0.1598
+[2024-12-16 09:56:53] MOTSPTrainer_HV.py(86) : Epoch   3/100: Time Est.: Elapsed[3.45m], Remain[1.86h]
+[2024-12-16 09:56:53] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 09:58:02] MOTSPTrainer_HV.py(136) : Epoch   4: Train (100%)  HV: 0.4191, Loss: -0.1556
+[2024-12-16 09:58:02] MOTSPTrainer_HV.py(86) : Epoch   4/100: Time Est.: Elapsed[4.60m], Remain[1.84h]
+[2024-12-16 09:58:02] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 09:59:11] MOTSPTrainer_HV.py(136) : Epoch   5: Train (100%)  HV: 0.4248, Loss: -0.1498
+[2024-12-16 09:59:11] MOTSPTrainer_HV.py(86) : Epoch   5/100: Time Est.: Elapsed[5.75m], Remain[1.82h]
+[2024-12-16 09:59:11] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 09:59:11] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:00:20] MOTSPTrainer_HV.py(136) : Epoch   6: Train (100%)  HV: 0.4319, Loss: -0.1370
+[2024-12-16 10:00:20] MOTSPTrainer_HV.py(86) : Epoch   6/100: Time Est.: Elapsed[6.90m], Remain[1.80h]
+[2024-12-16 10:00:20] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:01:29] MOTSPTrainer_HV.py(136) : Epoch   7: Train (100%)  HV: 0.4373, Loss: -0.1108
+[2024-12-16 10:01:29] MOTSPTrainer_HV.py(86) : Epoch   7/100: Time Est.: Elapsed[8.05m], Remain[1.78h]
+[2024-12-16 10:01:29] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:02:38] MOTSPTrainer_HV.py(136) : Epoch   8: Train (100%)  HV: 0.4449, Loss: -0.0827
+[2024-12-16 10:02:38] MOTSPTrainer_HV.py(86) : Epoch   8/100: Time Est.: Elapsed[9.20m], Remain[1.76h]
+[2024-12-16 10:02:38] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:03:46] MOTSPTrainer_HV.py(136) : Epoch   9: Train (100%)  HV: 0.4457, Loss: -0.0748
+[2024-12-16 10:03:46] MOTSPTrainer_HV.py(86) : Epoch   9/100: Time Est.: Elapsed[10.34m], Remain[1.74h]
+[2024-12-16 10:03:46] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:04:55] MOTSPTrainer_HV.py(136) : Epoch  10: Train (100%)  HV: 0.4488, Loss: -0.0702
+[2024-12-16 10:04:55] MOTSPTrainer_HV.py(86) : Epoch  10/100: Time Est.: Elapsed[11.49m], Remain[1.72h]
+[2024-12-16 10:04:55] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:04:55] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:06:04] MOTSPTrainer_HV.py(136) : Epoch  11: Train (100%)  HV: 0.4529, Loss: -0.0687
+[2024-12-16 10:06:04] MOTSPTrainer_HV.py(86) : Epoch  11/100: Time Est.: Elapsed[12.64m], Remain[1.70h]
+[2024-12-16 10:06:04] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:07:13] MOTSPTrainer_HV.py(136) : Epoch  12: Train (100%)  HV: 0.4528, Loss: -0.0639
+[2024-12-16 10:07:13] MOTSPTrainer_HV.py(86) : Epoch  12/100: Time Est.: Elapsed[13.78m], Remain[1.68h]
+[2024-12-16 10:07:13] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:08:21] MOTSPTrainer_HV.py(136) : Epoch  13: Train (100%)  HV: 0.4562, Loss: -0.0623
+[2024-12-16 10:08:21] MOTSPTrainer_HV.py(86) : Epoch  13/100: Time Est.: Elapsed[14.92m], Remain[1.66h]
+[2024-12-16 10:08:21] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:09:30] MOTSPTrainer_HV.py(136) : Epoch  14: Train (100%)  HV: 0.4537, Loss: -0.0600
+[2024-12-16 10:09:30] MOTSPTrainer_HV.py(86) : Epoch  14/100: Time Est.: Elapsed[16.06m], Remain[1.64h]
+[2024-12-16 10:09:30] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:10:38] MOTSPTrainer_HV.py(136) : Epoch  15: Train (100%)  HV: 0.4552, Loss: -0.0575
+[2024-12-16 10:10:38] MOTSPTrainer_HV.py(86) : Epoch  15/100: Time Est.: Elapsed[17.20m], Remain[1.62h]
+[2024-12-16 10:10:38] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:10:38] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:11:47] MOTSPTrainer_HV.py(136) : Epoch  16: Train (100%)  HV: 0.4560, Loss: -0.0558
+[2024-12-16 10:11:47] MOTSPTrainer_HV.py(86) : Epoch  16/100: Time Est.: Elapsed[18.35m], Remain[1.61h]
+[2024-12-16 10:11:47] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:12:56] MOTSPTrainer_HV.py(136) : Epoch  17: Train (100%)  HV: 0.4555, Loss: -0.0545
+[2024-12-16 10:12:56] MOTSPTrainer_HV.py(86) : Epoch  17/100: Time Est.: Elapsed[19.50m], Remain[1.59h]
+[2024-12-16 10:12:56] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:14:04] MOTSPTrainer_HV.py(136) : Epoch  18: Train (100%)  HV: 0.4561, Loss: -0.0515
+[2024-12-16 10:14:04] MOTSPTrainer_HV.py(86) : Epoch  18/100: Time Est.: Elapsed[20.65m], Remain[1.57h]
+[2024-12-16 10:14:04] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:15:13] MOTSPTrainer_HV.py(136) : Epoch  19: Train (100%)  HV: 0.4602, Loss: -0.0517
+[2024-12-16 10:15:13] MOTSPTrainer_HV.py(86) : Epoch  19/100: Time Est.: Elapsed[21.79m], Remain[1.55h]
+[2024-12-16 10:15:13] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:16:22] MOTSPTrainer_HV.py(136) : Epoch  20: Train (100%)  HV: 0.4583, Loss: -0.0503
+[2024-12-16 10:16:22] MOTSPTrainer_HV.py(86) : Epoch  20/100: Time Est.: Elapsed[22.93m], Remain[1.53h]
+[2024-12-16 10:16:22] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:16:22] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:17:30] MOTSPTrainer_HV.py(136) : Epoch  21: Train (100%)  HV: 0.4573, Loss: -0.0480
+[2024-12-16 10:17:30] MOTSPTrainer_HV.py(86) : Epoch  21/100: Time Est.: Elapsed[24.08m], Remain[1.51h]
+[2024-12-16 10:17:30] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:18:38] MOTSPTrainer_HV.py(136) : Epoch  22: Train (100%)  HV: 0.4589, Loss: -0.0480
+[2024-12-16 10:18:38] MOTSPTrainer_HV.py(86) : Epoch  22/100: Time Est.: Elapsed[25.21m], Remain[1.49h]
+[2024-12-16 10:18:38] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:19:46] MOTSPTrainer_HV.py(136) : Epoch  23: Train (100%)  HV: 0.4600, Loss: -0.0464
+[2024-12-16 10:19:46] MOTSPTrainer_HV.py(86) : Epoch  23/100: Time Est.: Elapsed[26.33m], Remain[1.47h]
+[2024-12-16 10:19:46] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:20:53] MOTSPTrainer_HV.py(136) : Epoch  24: Train (100%)  HV: 0.4603, Loss: -0.0456
+[2024-12-16 10:20:53] MOTSPTrainer_HV.py(86) : Epoch  24/100: Time Est.: Elapsed[27.45m], Remain[1.45h]
+[2024-12-16 10:20:53] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:22:00] MOTSPTrainer_HV.py(136) : Epoch  25: Train (100%)  HV: 0.4598, Loss: -0.0449
+[2024-12-16 10:22:01] MOTSPTrainer_HV.py(86) : Epoch  25/100: Time Est.: Elapsed[28.59m], Remain[1.43h]
+[2024-12-16 10:22:01] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:22:01] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:23:09] MOTSPTrainer_HV.py(136) : Epoch  26: Train (100%)  HV: 0.4588, Loss: -0.0432
+[2024-12-16 10:23:09] MOTSPTrainer_HV.py(86) : Epoch  26/100: Time Est.: Elapsed[29.71m], Remain[1.41h]
+[2024-12-16 10:23:09] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:24:16] MOTSPTrainer_HV.py(136) : Epoch  27: Train (100%)  HV: 0.4607, Loss: -0.0426
+[2024-12-16 10:24:16] MOTSPTrainer_HV.py(86) : Epoch  27/100: Time Est.: Elapsed[30.83m], Remain[1.39h]
+[2024-12-16 10:24:16] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:25:22] MOTSPTrainer_HV.py(136) : Epoch  28: Train (100%)  HV: 0.4607, Loss: -0.0426
+[2024-12-16 10:25:22] MOTSPTrainer_HV.py(86) : Epoch  28/100: Time Est.: Elapsed[31.94m], Remain[1.37h]
+[2024-12-16 10:25:22] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:26:29] MOTSPTrainer_HV.py(136) : Epoch  29: Train (100%)  HV: 0.4614, Loss: -0.0414
+[2024-12-16 10:26:29] MOTSPTrainer_HV.py(86) : Epoch  29/100: Time Est.: Elapsed[33.06m], Remain[1.35h]
+[2024-12-16 10:26:29] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:27:36] MOTSPTrainer_HV.py(136) : Epoch  30: Train (100%)  HV: 0.4615, Loss: -0.0420
+[2024-12-16 10:27:36] MOTSPTrainer_HV.py(86) : Epoch  30/100: Time Est.: Elapsed[34.17m], Remain[1.33h]
+[2024-12-16 10:27:36] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:27:36] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:28:40] MOTSPTrainer_HV.py(136) : Epoch  31: Train (100%)  HV: 0.4600, Loss: -0.0398
+[2024-12-16 10:28:40] MOTSPTrainer_HV.py(86) : Epoch  31/100: Time Est.: Elapsed[35.23m], Remain[1.31h]
+[2024-12-16 10:28:40] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:29:42] MOTSPTrainer_HV.py(136) : Epoch  32: Train (100%)  HV: 0.4617, Loss: -0.0394
+[2024-12-16 10:29:42] MOTSPTrainer_HV.py(86) : Epoch  32/100: Time Est.: Elapsed[36.26m], Remain[1.28h]
+[2024-12-16 10:29:42] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:30:44] MOTSPTrainer_HV.py(136) : Epoch  33: Train (100%)  HV: 0.4622, Loss: -0.0390
+[2024-12-16 10:30:44] MOTSPTrainer_HV.py(86) : Epoch  33/100: Time Est.: Elapsed[37.30m], Remain[1.26h]
+[2024-12-16 10:30:44] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:31:46] MOTSPTrainer_HV.py(136) : Epoch  34: Train (100%)  HV: 0.4618, Loss: -0.0406
+[2024-12-16 10:31:46] MOTSPTrainer_HV.py(86) : Epoch  34/100: Time Est.: Elapsed[38.33m], Remain[1.24h]
+[2024-12-16 10:31:46] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:32:48] MOTSPTrainer_HV.py(136) : Epoch  35: Train (100%)  HV: 0.4620, Loss: -0.0383
+[2024-12-16 10:32:48] MOTSPTrainer_HV.py(86) : Epoch  35/100: Time Est.: Elapsed[39.37m], Remain[1.22h]
+[2024-12-16 10:32:48] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:32:48] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:33:50] MOTSPTrainer_HV.py(136) : Epoch  36: Train (100%)  HV: 0.4623, Loss: -0.0384
+[2024-12-16 10:33:50] MOTSPTrainer_HV.py(86) : Epoch  36/100: Time Est.: Elapsed[40.40m], Remain[1.20h]
+[2024-12-16 10:33:50] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:34:52] MOTSPTrainer_HV.py(136) : Epoch  37: Train (100%)  HV: 0.4639, Loss: -0.0392
+[2024-12-16 10:34:52] MOTSPTrainer_HV.py(86) : Epoch  37/100: Time Est.: Elapsed[41.44m], Remain[1.18h]
+[2024-12-16 10:34:52] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:35:54] MOTSPTrainer_HV.py(136) : Epoch  38: Train (100%)  HV: 0.4630, Loss: -0.0377
+[2024-12-16 10:35:54] MOTSPTrainer_HV.py(86) : Epoch  38/100: Time Est.: Elapsed[42.47m], Remain[1.15h]
+[2024-12-16 10:35:54] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:36:56] MOTSPTrainer_HV.py(136) : Epoch  39: Train (100%)  HV: 0.4635, Loss: -0.0375
+[2024-12-16 10:36:56] MOTSPTrainer_HV.py(86) : Epoch  39/100: Time Est.: Elapsed[43.50m], Remain[1.13h]
+[2024-12-16 10:36:56] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:37:58] MOTSPTrainer_HV.py(136) : Epoch  40: Train (100%)  HV: 0.4646, Loss: -0.0359
+[2024-12-16 10:37:58] MOTSPTrainer_HV.py(86) : Epoch  40/100: Time Est.: Elapsed[44.54m], Remain[1.11h]
+[2024-12-16 10:37:58] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:37:58] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:39:00] MOTSPTrainer_HV.py(136) : Epoch  41: Train (100%)  HV: 0.4632, Loss: -0.0366
+[2024-12-16 10:39:00] MOTSPTrainer_HV.py(86) : Epoch  41/100: Time Est.: Elapsed[45.57m], Remain[1.09h]
+[2024-12-16 10:39:00] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:40:02] MOTSPTrainer_HV.py(136) : Epoch  42: Train (100%)  HV: 0.4635, Loss: -0.0374
+[2024-12-16 10:40:02] MOTSPTrainer_HV.py(86) : Epoch  42/100: Time Est.: Elapsed[46.61m], Remain[1.07h]
+[2024-12-16 10:40:02] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:41:04] MOTSPTrainer_HV.py(136) : Epoch  43: Train (100%)  HV: 0.4645, Loss: -0.0362
+[2024-12-16 10:41:04] MOTSPTrainer_HV.py(86) : Epoch  43/100: Time Est.: Elapsed[47.64m], Remain[1.05h]
+[2024-12-16 10:41:04] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:42:06] MOTSPTrainer_HV.py(136) : Epoch  44: Train (100%)  HV: 0.4647, Loss: -0.0359
+[2024-12-16 10:42:06] MOTSPTrainer_HV.py(86) : Epoch  44/100: Time Est.: Elapsed[48.67m], Remain[1.03h]
+[2024-12-16 10:42:06] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:43:08] MOTSPTrainer_HV.py(136) : Epoch  45: Train (100%)  HV: 0.4634, Loss: -0.0358
+[2024-12-16 10:43:08] MOTSPTrainer_HV.py(86) : Epoch  45/100: Time Est.: Elapsed[49.71m], Remain[1.01h]
+[2024-12-16 10:43:08] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:43:09] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:44:11] MOTSPTrainer_HV.py(136) : Epoch  46: Train (100%)  HV: 0.4665, Loss: -0.0354
+[2024-12-16 10:44:11] MOTSPTrainer_HV.py(86) : Epoch  46/100: Time Est.: Elapsed[50.75m], Remain[59.57m]
+[2024-12-16 10:44:11] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:45:13] MOTSPTrainer_HV.py(136) : Epoch  47: Train (100%)  HV: 0.4653, Loss: -0.0356
+[2024-12-16 10:45:13] MOTSPTrainer_HV.py(86) : Epoch  47/100: Time Est.: Elapsed[51.78m], Remain[58.39m]
+[2024-12-16 10:45:13] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:46:15] MOTSPTrainer_HV.py(136) : Epoch  48: Train (100%)  HV: 0.4657, Loss: -0.0345
+[2024-12-16 10:46:15] MOTSPTrainer_HV.py(86) : Epoch  48/100: Time Est.: Elapsed[52.82m], Remain[57.22m]
+[2024-12-16 10:46:15] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:47:17] MOTSPTrainer_HV.py(136) : Epoch  49: Train (100%)  HV: 0.4651, Loss: -0.0353
+[2024-12-16 10:47:17] MOTSPTrainer_HV.py(86) : Epoch  49/100: Time Est.: Elapsed[53.85m], Remain[56.05m]
+[2024-12-16 10:47:17] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:48:19] MOTSPTrainer_HV.py(136) : Epoch  50: Train (100%)  HV: 0.4626, Loss: -0.0338
+[2024-12-16 10:48:19] MOTSPTrainer_HV.py(86) : Epoch  50/100: Time Est.: Elapsed[54.89m], Remain[54.89m]
+[2024-12-16 10:48:19] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:48:19] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:49:21] MOTSPTrainer_HV.py(136) : Epoch  51: Train (100%)  HV: 0.4653, Loss: -0.0338
+[2024-12-16 10:49:21] MOTSPTrainer_HV.py(86) : Epoch  51/100: Time Est.: Elapsed[55.92m], Remain[53.73m]
+[2024-12-16 10:49:21] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:50:23] MOTSPTrainer_HV.py(136) : Epoch  52: Train (100%)  HV: 0.4649, Loss: -0.0337
+[2024-12-16 10:50:23] MOTSPTrainer_HV.py(86) : Epoch  52/100: Time Est.: Elapsed[56.96m], Remain[52.57m]
+[2024-12-16 10:50:23] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:51:25] MOTSPTrainer_HV.py(136) : Epoch  53: Train (100%)  HV: 0.4643, Loss: -0.0340
+[2024-12-16 10:51:25] MOTSPTrainer_HV.py(86) : Epoch  53/100: Time Est.: Elapsed[57.99m], Remain[51.42m]
+[2024-12-16 10:51:25] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:52:27] MOTSPTrainer_HV.py(136) : Epoch  54: Train (100%)  HV: 0.4655, Loss: -0.0335
+[2024-12-16 10:52:27] MOTSPTrainer_HV.py(86) : Epoch  54/100: Time Est.: Elapsed[59.02m], Remain[50.28m]
+[2024-12-16 10:52:27] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:53:29] MOTSPTrainer_HV.py(136) : Epoch  55: Train (100%)  HV: 0.4661, Loss: -0.0338
+[2024-12-16 10:53:29] MOTSPTrainer_HV.py(86) : Epoch  55/100: Time Est.: Elapsed[1.00h], Remain[49.13m]
+[2024-12-16 10:53:29] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:53:29] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:54:31] MOTSPTrainer_HV.py(136) : Epoch  56: Train (100%)  HV: 0.4656, Loss: -0.0331
+[2024-12-16 10:54:31] MOTSPTrainer_HV.py(86) : Epoch  56/100: Time Est.: Elapsed[1.02h], Remain[47.99m]
+[2024-12-16 10:54:31] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:55:33] MOTSPTrainer_HV.py(136) : Epoch  57: Train (100%)  HV: 0.4646, Loss: -0.0325
+[2024-12-16 10:55:33] MOTSPTrainer_HV.py(86) : Epoch  57/100: Time Est.: Elapsed[1.04h], Remain[46.86m]
+[2024-12-16 10:55:33] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:56:34] MOTSPTrainer_HV.py(136) : Epoch  58: Train (100%)  HV: 0.4661, Loss: -0.0324
+[2024-12-16 10:56:34] MOTSPTrainer_HV.py(86) : Epoch  58/100: Time Est.: Elapsed[1.05h], Remain[45.73m]
+[2024-12-16 10:56:34] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:57:36] MOTSPTrainer_HV.py(136) : Epoch  59: Train (100%)  HV: 0.4670, Loss: -0.0328
+[2024-12-16 10:57:36] MOTSPTrainer_HV.py(86) : Epoch  59/100: Time Est.: Elapsed[1.07h], Remain[44.60m]
+[2024-12-16 10:57:36] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:58:38] MOTSPTrainer_HV.py(136) : Epoch  60: Train (100%)  HV: 0.4657, Loss: -0.0315
+[2024-12-16 10:58:38] MOTSPTrainer_HV.py(86) : Epoch  60/100: Time Est.: Elapsed[1.09h], Remain[43.47m]
+[2024-12-16 10:58:38] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 10:58:38] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 10:59:40] MOTSPTrainer_HV.py(136) : Epoch  61: Train (100%)  HV: 0.4661, Loss: -0.0323
+[2024-12-16 10:59:40] MOTSPTrainer_HV.py(86) : Epoch  61/100: Time Est.: Elapsed[1.10h], Remain[42.35m]
+[2024-12-16 10:59:40] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:00:42] MOTSPTrainer_HV.py(136) : Epoch  62: Train (100%)  HV: 0.4675, Loss: -0.0325
+[2024-12-16 11:00:42] MOTSPTrainer_HV.py(86) : Epoch  62/100: Time Est.: Elapsed[1.12h], Remain[41.23m]
+[2024-12-16 11:00:42] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:01:44] MOTSPTrainer_HV.py(136) : Epoch  63: Train (100%)  HV: 0.4659, Loss: -0.0311
+[2024-12-16 11:01:44] MOTSPTrainer_HV.py(86) : Epoch  63/100: Time Est.: Elapsed[1.14h], Remain[40.11m]
+[2024-12-16 11:01:44] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:02:46] MOTSPTrainer_HV.py(136) : Epoch  64: Train (100%)  HV: 0.4661, Loss: -0.0305
+[2024-12-16 11:02:46] MOTSPTrainer_HV.py(86) : Epoch  64/100: Time Est.: Elapsed[1.16h], Remain[39.00m]
+[2024-12-16 11:02:46] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:03:48] MOTSPTrainer_HV.py(136) : Epoch  65: Train (100%)  HV: 0.4664, Loss: -0.0311
+[2024-12-16 11:03:48] MOTSPTrainer_HV.py(86) : Epoch  65/100: Time Est.: Elapsed[1.17h], Remain[37.89m]
+[2024-12-16 11:03:48] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:03:48] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:04:50] MOTSPTrainer_HV.py(136) : Epoch  66: Train (100%)  HV: 0.4650, Loss: -0.0317
+[2024-12-16 11:04:50] MOTSPTrainer_HV.py(86) : Epoch  66/100: Time Est.: Elapsed[1.19h], Remain[36.79m]
+[2024-12-16 11:04:50] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:05:52] MOTSPTrainer_HV.py(136) : Epoch  67: Train (100%)  HV: 0.4669, Loss: -0.0313
+[2024-12-16 11:05:52] MOTSPTrainer_HV.py(86) : Epoch  67/100: Time Est.: Elapsed[1.21h], Remain[35.68m]
+[2024-12-16 11:05:52] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:06:55] MOTSPTrainer_HV.py(136) : Epoch  68: Train (100%)  HV: 0.4666, Loss: -0.0307
+[2024-12-16 11:06:55] MOTSPTrainer_HV.py(86) : Epoch  68/100: Time Est.: Elapsed[1.22h], Remain[34.58m]
+[2024-12-16 11:06:55] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:08:00] MOTSPTrainer_HV.py(136) : Epoch  69: Train (100%)  HV: 0.4667, Loss: -0.0312
+[2024-12-16 11:08:00] MOTSPTrainer_HV.py(86) : Epoch  69/100: Time Est.: Elapsed[1.24h], Remain[33.50m]
+[2024-12-16 11:08:00] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:09:04] MOTSPTrainer_HV.py(136) : Epoch  70: Train (100%)  HV: 0.4661, Loss: -0.0313
+[2024-12-16 11:09:04] MOTSPTrainer_HV.py(86) : Epoch  70/100: Time Est.: Elapsed[1.26h], Remain[32.42m]
+[2024-12-16 11:09:04] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:09:05] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:10:09] MOTSPTrainer_HV.py(136) : Epoch  71: Train (100%)  HV: 0.4688, Loss: -0.0305
+[2024-12-16 11:10:09] MOTSPTrainer_HV.py(86) : Epoch  71/100: Time Est.: Elapsed[1.28h], Remain[31.34m]
+[2024-12-16 11:10:09] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:11:14] MOTSPTrainer_HV.py(136) : Epoch  72: Train (100%)  HV: 0.4686, Loss: -0.0298
+[2024-12-16 11:11:14] MOTSPTrainer_HV.py(86) : Epoch  72/100: Time Est.: Elapsed[1.30h], Remain[30.26m]
+[2024-12-16 11:11:14] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:12:19] MOTSPTrainer_HV.py(136) : Epoch  73: Train (100%)  HV: 0.4673, Loss: -0.0310
+[2024-12-16 11:12:19] MOTSPTrainer_HV.py(86) : Epoch  73/100: Time Est.: Elapsed[1.31h], Remain[29.18m]
+[2024-12-16 11:12:19] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:13:23] MOTSPTrainer_HV.py(136) : Epoch  74: Train (100%)  HV: 0.4657, Loss: -0.0292
+[2024-12-16 11:13:23] MOTSPTrainer_HV.py(86) : Epoch  74/100: Time Est.: Elapsed[1.33h], Remain[28.09m]
+[2024-12-16 11:13:23] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:14:28] MOTSPTrainer_HV.py(136) : Epoch  75: Train (100%)  HV: 0.4650, Loss: -0.0299
+[2024-12-16 11:14:28] MOTSPTrainer_HV.py(86) : Epoch  75/100: Time Est.: Elapsed[1.35h], Remain[27.01m]
+[2024-12-16 11:14:28] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:14:28] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:15:32] MOTSPTrainer_HV.py(136) : Epoch  76: Train (100%)  HV: 0.4661, Loss: -0.0299
+[2024-12-16 11:15:32] MOTSPTrainer_HV.py(86) : Epoch  76/100: Time Est.: Elapsed[1.37h], Remain[25.93m]
+[2024-12-16 11:15:32] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:16:36] MOTSPTrainer_HV.py(136) : Epoch  77: Train (100%)  HV: 0.4667, Loss: -0.0299
+[2024-12-16 11:16:36] MOTSPTrainer_HV.py(86) : Epoch  77/100: Time Est.: Elapsed[1.39h], Remain[24.85m]
+[2024-12-16 11:16:36] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:17:41] MOTSPTrainer_HV.py(136) : Epoch  78: Train (100%)  HV: 0.4694, Loss: -0.0299
+[2024-12-16 11:17:41] MOTSPTrainer_HV.py(86) : Epoch  78/100: Time Est.: Elapsed[1.40h], Remain[23.76m]
+[2024-12-16 11:17:41] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:18:46] MOTSPTrainer_HV.py(136) : Epoch  79: Train (100%)  HV: 0.4670, Loss: -0.0286
+[2024-12-16 11:18:46] MOTSPTrainer_HV.py(86) : Epoch  79/100: Time Est.: Elapsed[1.42h], Remain[22.68m]
+[2024-12-16 11:18:46] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:19:51] MOTSPTrainer_HV.py(136) : Epoch  80: Train (100%)  HV: 0.4683, Loss: -0.0295
+[2024-12-16 11:19:51] MOTSPTrainer_HV.py(86) : Epoch  80/100: Time Est.: Elapsed[1.44h], Remain[21.60m]
+[2024-12-16 11:19:51] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:19:51] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:20:55] MOTSPTrainer_HV.py(136) : Epoch  81: Train (100%)  HV: 0.4677, Loss: -0.0289
+[2024-12-16 11:20:55] MOTSPTrainer_HV.py(86) : Epoch  81/100: Time Est.: Elapsed[1.46h], Remain[20.52m]
+[2024-12-16 11:20:55] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:21:59] MOTSPTrainer_HV.py(136) : Epoch  82: Train (100%)  HV: 0.4672, Loss: -0.0294
+[2024-12-16 11:21:59] MOTSPTrainer_HV.py(86) : Epoch  82/100: Time Est.: Elapsed[1.48h], Remain[19.44m]
+[2024-12-16 11:21:59] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:23:03] MOTSPTrainer_HV.py(136) : Epoch  83: Train (100%)  HV: 0.4677, Loss: -0.0292
+[2024-12-16 11:23:03] MOTSPTrainer_HV.py(86) : Epoch  83/100: Time Est.: Elapsed[1.49h], Remain[18.36m]
+[2024-12-16 11:23:03] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:24:08] MOTSPTrainer_HV.py(136) : Epoch  84: Train (100%)  HV: 0.4696, Loss: -0.0291
+[2024-12-16 11:24:08] MOTSPTrainer_HV.py(86) : Epoch  84/100: Time Est.: Elapsed[1.51h], Remain[17.28m]
+[2024-12-16 11:24:08] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:25:13] MOTSPTrainer_HV.py(136) : Epoch  85: Train (100%)  HV: 0.4669, Loss: -0.0289
+[2024-12-16 11:25:13] MOTSPTrainer_HV.py(86) : Epoch  85/100: Time Est.: Elapsed[1.53h], Remain[16.20m]
+[2024-12-16 11:25:13] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:25:13] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:26:17] MOTSPTrainer_HV.py(136) : Epoch  86: Train (100%)  HV: 0.4659, Loss: -0.0285
+[2024-12-16 11:26:17] MOTSPTrainer_HV.py(86) : Epoch  86/100: Time Est.: Elapsed[1.55h], Remain[15.12m]
+[2024-12-16 11:26:17] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:27:21] MOTSPTrainer_HV.py(136) : Epoch  87: Train (100%)  HV: 0.4674, Loss: -0.0287
+[2024-12-16 11:27:21] MOTSPTrainer_HV.py(86) : Epoch  87/100: Time Est.: Elapsed[1.57h], Remain[14.03m]
+[2024-12-16 11:27:21] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:28:25] MOTSPTrainer_HV.py(136) : Epoch  88: Train (100%)  HV: 0.4682, Loss: -0.0289
+[2024-12-16 11:28:25] MOTSPTrainer_HV.py(86) : Epoch  88/100: Time Est.: Elapsed[1.58h], Remain[12.95m]
+[2024-12-16 11:28:25] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:29:30] MOTSPTrainer_HV.py(136) : Epoch  89: Train (100%)  HV: 0.4666, Loss: -0.0274
+[2024-12-16 11:29:30] MOTSPTrainer_HV.py(86) : Epoch  89/100: Time Est.: Elapsed[1.60h], Remain[11.87m]
+[2024-12-16 11:29:30] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:30:34] MOTSPTrainer_HV.py(136) : Epoch  90: Train (100%)  HV: 0.4692, Loss: -0.0285
+[2024-12-16 11:30:34] MOTSPTrainer_HV.py(86) : Epoch  90/100: Time Est.: Elapsed[1.62h], Remain[10.79m]
+[2024-12-16 11:30:34] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:30:35] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:31:38] MOTSPTrainer_HV.py(136) : Epoch  91: Train (100%)  HV: 0.4669, Loss: -0.0269
+[2024-12-16 11:31:38] MOTSPTrainer_HV.py(86) : Epoch  91/100: Time Est.: Elapsed[1.64h], Remain[9.71m]
+[2024-12-16 11:31:38] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:32:43] MOTSPTrainer_HV.py(136) : Epoch  92: Train (100%)  HV: 0.4699, Loss: -0.0276
+[2024-12-16 11:32:43] MOTSPTrainer_HV.py(86) : Epoch  92/100: Time Est.: Elapsed[1.65h], Remain[8.63m]
+[2024-12-16 11:32:43] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:33:48] MOTSPTrainer_HV.py(136) : Epoch  93: Train (100%)  HV: 0.4688, Loss: -0.0272
+[2024-12-16 11:33:48] MOTSPTrainer_HV.py(86) : Epoch  93/100: Time Est.: Elapsed[1.67h], Remain[7.56m]
+[2024-12-16 11:33:48] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:34:52] MOTSPTrainer_HV.py(136) : Epoch  94: Train (100%)  HV: 0.4690, Loss: -0.0276
+[2024-12-16 11:34:52] MOTSPTrainer_HV.py(86) : Epoch  94/100: Time Est.: Elapsed[1.69h], Remain[6.48m]
+[2024-12-16 11:34:52] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:35:56] MOTSPTrainer_HV.py(136) : Epoch  95: Train (100%)  HV: 0.4694, Loss: -0.0273
+[2024-12-16 11:35:56] MOTSPTrainer_HV.py(86) : Epoch  95/100: Time Est.: Elapsed[1.71h], Remain[5.40m]
+[2024-12-16 11:35:56] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:35:56] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:37:00] MOTSPTrainer_HV.py(136) : Epoch  96: Train (100%)  HV: 0.4669, Loss: -0.0277
+[2024-12-16 11:37:00] MOTSPTrainer_HV.py(86) : Epoch  96/100: Time Est.: Elapsed[1.73h], Remain[4.32m]
+[2024-12-16 11:37:00] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:38:05] MOTSPTrainer_HV.py(136) : Epoch  97: Train (100%)  HV: 0.4683, Loss: -0.0277
+[2024-12-16 11:38:05] MOTSPTrainer_HV.py(86) : Epoch  97/100: Time Est.: Elapsed[1.74h], Remain[3.24m]
+[2024-12-16 11:38:05] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:39:09] MOTSPTrainer_HV.py(136) : Epoch  98: Train (100%)  HV: 0.4674, Loss: -0.0268
+[2024-12-16 11:39:09] MOTSPTrainer_HV.py(86) : Epoch  98/100: Time Est.: Elapsed[1.76h], Remain[2.16m]
+[2024-12-16 11:39:09] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:40:13] MOTSPTrainer_HV.py(136) : Epoch  99: Train (100%)  HV: 0.4680, Loss: -0.0268
+[2024-12-16 11:40:13] MOTSPTrainer_HV.py(86) : Epoch  99/100: Time Est.: Elapsed[1.78h], Remain[1.08m]
+[2024-12-16 11:40:13] MOTSPTrainer_HV.py(71) : =================================================================
+[2024-12-16 11:41:17] MOTSPTrainer_HV.py(136) : Epoch 100: Train (100%)  HV: 0.4686, Loss: -0.0272
+[2024-12-16 11:41:17] MOTSPTrainer_HV.py(86) : Epoch 100/100: Time Est.: Elapsed[1.80h], Remain[0.00m]
+[2024-12-16 11:41:17] MOTSPTrainer_HV.py(93) : Saving trained_model
+[2024-12-16 11:41:18] MOTSPTrainer_HV.py(104) :  *** Training Done *** 
+[2024-12-16 11:41:18] MOTSPTrainer_HV.py(105) : Now, printing log array...
+[2024-12-16 11:41:18] utils.py(236) : train_loss_list = [-0.15037597681678833, -0.1610579083305598, -0.1597964561340213, -0.15557822736300525, -0.14980542283654216, -0.1370164675942063, -0.11083823253683744, -0.08268286582019183, -0.07484339807182551, -0.07023121392847971, -0.06866430276502856, -0.06385123093426226, -0.0622636111562699, -0.05996868074202444, -0.05748594076012263, -0.0558296060074307, -0.054472347509562986, -0.05145216881677508, -0.05173375076876489, -0.05031998075257988, -0.04796814459480344, -0.047956819390431046, -0.04641346192950383, -0.04564079296855256, -0.044894670237358665, -0.04321080913484099, -0.04259445617350751, -0.04256882098997943, -0.04141689207539894, -0.04200953751893016, -0.039758106044391166, -0.03942170353509485, -0.03896579948377795, -0.04064563282869873, -0.03834899973024789, -0.038377786340466694, -0.03922155204955488, -0.037709249225514926, -0.037536974402926845, -0.03587666969840414, -0.036644445541203025, -0.03739987340984866, -0.03622863877117634, -0.03588249840342615, -0.0358429885302484, -0.03537571735124102, -0.03557438042804132, -0.034519253836702554, -0.03525712779405061, -0.033777975560096665, -0.033768908078316597, -0.03367999521199613, -0.034035217492361554, -0.03350606700000098, -0.03377265898101703, -0.03313140935506673, -0.032541691559245814, -0.0324496388082672, -0.03281697605920841, -0.03149196144461166, -0.03225090745383873, -0.032530302038502414, -0.031110507130625183, -0.0304830157919787, -0.031072475101556644, -0.0316755608503474, -0.03127825860368088, -0.030703002633005377, -0.031163145487066373, -0.031335965427458305, -0.030516438397127196, -0.029794767552344125, -0.03098894194783643, -0.029159161308445026, -0.029943697234094152, -0.029899436802545084, -0.0299279277633503, -0.029915665134800377, -0.02860418056802825, -0.029534845653045937, -0.028884404260917818, -0.029429141118139386, -0.029192549861764998, -0.029141126247770155, -0.028867899677297082, -0.028480053335954426, -0.02866652253509681, -0.02893513154413435, -0.027384929570785466, -0.02852233115036507, -0.02686723132734012, -0.027603281290556777, -0.027188689707119493, -0.02761620460687206, -0.027322087234995546, -0.02771641041058116, -0.027670696362480526, -0.026774176804504828, -0.02681216473235749, -0.027157914329746263]
+[2024-12-16 11:41:18] utils.py(236) : hv_list = [0.3581417984485627, 0.39633506688356407, 0.4105709822058676, 0.4191285027241706, 0.42475872935056697, 0.4319110139656066, 0.4373396648907661, 0.4448531279039383, 0.4457307798123359, 0.44881468136310576, 0.45286726087570195, 0.45279871088027956, 0.45618942007064817, 0.45367450719833385, 0.4551914295649528, 0.45600615777492515, 0.4555349945926666, 0.4561390916872023, 0.4602012757134437, 0.45827217671871157, 0.4573208079028128, 0.4588764548444746, 0.46000362541675577, 0.4603041287899016, 0.4597893568062783, 0.4588109405612945, 0.46072874147892007, 0.46068578742504135, 0.4613906335997582, 0.4614527577471732, 0.4599915007925033, 0.4616880233907698, 0.46215745550632453, 0.46175556164026277, 0.46202044138908377, 0.46225064072370553, 0.46389193251132976, 0.46296961009979243, 0.46350923135519023, 0.4646240274477003, 0.4631793687939643, 0.4635283648824694, 0.46451021350622185, 0.4646777652692796, 0.46338040246248235, 0.46652902621984466, 0.4652866748237607, 0.46566863923072815, 0.46508040883302704, 0.46260198885679255, 0.46533141110420245, 0.46490215778350813, 0.4643404476547241, 0.4654647564077377, 0.46606387033462526, 0.4655976945137978, 0.4646404414486883, 0.46612995690107345, 0.4670343158340454, 0.4656636370420458, 0.4661422500348091, 0.46751495254278197, 0.4658904416680336, 0.4660559827160836, 0.4663778620314598, 0.4649597952723503, 0.4669460963940621, 0.46656222892761234, 0.4667438388323785, 0.4661159602618219, 0.46880270414114, 0.46864703463554386, 0.4672737708973886, 0.4656851902675631, 0.46497526340723006, 0.4660638696408272, 0.46666391827106474, 0.46944863385677316, 0.4670354590797424, 0.46827717934131613, 0.46769866831779483, 0.4672468218898774, 0.4677006495785713, 0.4696300699400902, 0.4669203516435623, 0.46592623037815073, 0.46737208988189693, 0.46819697070598615, 0.4666410816836357, 0.4692278051114084, 0.4669366467666627, 0.46993140474081047, 0.46880263641119, 0.4690383423686026, 0.46941333351135234, 0.46693377920866014, 0.4682736873102189, 0.46737747304916394, 0.4679542512989044, 0.4686330330157278]
