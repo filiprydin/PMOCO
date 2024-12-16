@@ -18,10 +18,11 @@ sys.path.insert(0, "../..")  # for utils
 ##########################################################################################
 # import
 import logging
-from utils.utils import create_logger, copy_all_src
+from utils.utils import create_logger, copy_all_src, get_result_folder
 
 
-from MOTSPTester import TSPTester as Tester
+from MOTSPTester import TSPTester
+from MOTSPTester_HV import TSPTesterHV
 from MOTSProblemDef import get_random_problems
 
 ##########################################################################################
@@ -78,6 +79,7 @@ def _set_debug_mode():
 def _print_config():
     logger = logging.getLogger('root')
     logger.info('DEBUG_MODE: {}'.format(DEBUG_MODE))
+    logger.info('Training Method: {}'.format(training_method))
     logger.info('USE_CUDA: {}, CUDA_DEVICE_NUM: {}'.format(USE_CUDA, CUDA_DEVICE_NUM))
     [logger.info(g_key + "{}".format(globals()[g_key])) for g_key in globals().keys() if g_key.endswith('params')]
 
@@ -93,9 +95,15 @@ def main(n_sols = 101):
     create_logger(**logger_params)
     _print_config()
     
-    tester = Tester(env_params=env_params,
-                    model_params=model_params,
-                    tester_params=tester_params)
+    if training_method == "Obj":
+        tester = TSPTester(env_params=env_params,
+                        model_params=model_params,
+                        tester_params=tester_params)
+    else: 
+        tester = TSPTesterHV(env_params=env_params,
+                        model_params=model_params,
+                        tester_params=tester_params)
+
     
     copy_all_src(tester.result_folder)
     
@@ -104,10 +112,14 @@ def main(n_sols = 101):
     shared_problem = get_random_problems(tester_params['test_episodes'], env_params['problem_size'])
     
     for i in range(n_sols):
-        pref = torch.zeros(2).cuda()
-        pref[0] = 1 - 0.01 * i
-        pref[1] = 0.01 * i
-        pref = pref / torch.sum(pref)
+        if training_method == "Obj":
+            pref = torch.zeros(2).cuda()
+            pref[0] = 1 - 0.01 * i
+            pref[1] = 0.01 * i
+            pref = pref / torch.sum(pref)
+        else: 
+            pref = torch.zeros(1).cuda()
+            pref[0] = (torch.pi / 2) * i / (n_sols - 1)
     
         aug_score = tester.run(shared_problem,pref)
         sols[i] = np.array(aug_score)
@@ -116,6 +128,8 @@ def main(n_sols = 101):
     
     total_time = timer_end - timer_start
    
+    result_folder = get_result_folder()
+    np.savetxt(os.path.join(result_folder, "{}.txt".format("PMOCO")), sols, fmt='%f', delimiter=' ', newline='\n')
 
     print('Run Time(s): {:.4f}'.format(total_time))
 
