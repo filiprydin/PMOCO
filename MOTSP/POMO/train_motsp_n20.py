@@ -55,7 +55,7 @@ optimizer_params = {
 trainer_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
-    'reference': [15, 15], # Only relevant if training method is "HV"
+    'reference': [20, 20], # Only relevant if training method is "HV"
     'n_prefs': 20, # Only relevant if training method is "HV"
     'epochs': 100,
     'train_episodes': 5000,

@@ -177,7 +177,9 @@ class TSP_Decoder(nn.Module):
         qkv_dim = self.model_params['qkv_dim']
         
         hyper_embd = self.hyper_fc1(pref)
+        hyper_embd = F.relu(hyper_embd)
         hyper_embd = self.hyper_fc2(hyper_embd)
+        hyper_embd = F.relu(hyper_embd)
         mid_embd = self.hyper_fc3(hyper_embd)
         
         self.Wq_first_para = self.hyper_Wq_first(mid_embd[:self.embd_dim]).reshape(embedding_dim, head_num * qkv_dim)

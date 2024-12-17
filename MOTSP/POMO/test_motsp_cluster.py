@@ -52,13 +52,13 @@ tester_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
     'model_load': {
-        'path': './result/saved_tsp20_model',  # directory path of pre-trained model and log files saved.
-        'epoch': 200, 
+        'path': './Final_result/HV_20_2',  # directory path of pre-trained model and log files saved.
+        'epoch': 100, 
     },
-    'test_episodes': 100, 
-    'test_batch_size': 100,
-    'augmentation_enable': True,
-    'aug_factor': 1, #64,
+    'test_episodes': 200, 
+    'test_batch_size': 200,
+    'augmentation_enable': False,
+    'aug_factor': 64, #64,
     'aug_batch_size': 100 
 }
 if tester_params['augmentation_enable']:

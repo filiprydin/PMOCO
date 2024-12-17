@@ -14,7 +14,7 @@ from einops import rearrange
 from utils.utils import *
 
 
-class TSPTester:
+class TSPTesterHV:
     def __init__(self,
                  env_params,
                  model_params,

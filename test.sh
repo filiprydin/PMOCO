@@ -11,4 +11,4 @@ module load PyTorch-Geometric/2.5.0-foss-2023a-PyTorch-2.1.2-CUDA-12.1.1
 module load einops/0.7.0-GCCcore-12.3.0
 
 # Run the Python script
-python MOTSP/test_motsp_cluster.py
+python MOTSP/POMO/test_motsp_cluster.py

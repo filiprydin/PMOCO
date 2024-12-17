@@ -229,11 +229,11 @@ class TSPTrainerHV:
         proj_dist = torch.maximum(G_current, torch.zeros_like(G_current)) # (B, P)
 
         if self.proj_dists is None:
-            proj_dists = proj_dist.unsqueeze(2)
+            self.proj_dists = proj_dist.unsqueeze(2)
         else: 
-            proj_dists = torch.cat((proj_dists, proj_dist.unsqueeze(2)), dim=2) # Add current distance, (B, P, p')
+            self.proj_dists = torch.cat((self.proj_dists, proj_dist.unsqueeze(2)), dim=2) # Add current distance, (B, P, p')
         
-        HV = self.HV_const * torch.mean(torch.pow(proj_dists, 2), dim=2) # (B, P, p') -> (B, P)
+        HV = self.HV_const * torch.mean(torch.pow(self.proj_dists, 2), dim=2) # (B, P, p') -> (B, P)
         HV = HV / (self.ref[0]*self.ref[1])
 
         norm_const = torch.minimum(self.ref[0]/lambda1, self.ref[1]/lambda2)
