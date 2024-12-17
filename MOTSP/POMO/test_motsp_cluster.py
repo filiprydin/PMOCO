@@ -52,13 +52,14 @@ tester_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
     'model_load': {
-        'path': './result/saved_tsp20_model',  # directory path of pre-trained model and log files saved.
-        'epoch': 200, 
+        'path': './Final_result/HV',  # directory path of pre-trained model and log files saved.
+        'epoch': 100, 
     },
-    'test_episodes': 100, 
-    'test_batch_size': 100,
+    'reference': [15, 15], # Only relevant if training method is "HV"
+    'test_episodes': 40, 
+    'test_batch_size': 40,
     'augmentation_enable': True,
-    'aug_factor': 1, #64,
+    'aug_factor': 64, #64,
     'aug_batch_size': 100 
 }
 if tester_params['augmentation_enable']:
@@ -111,18 +112,17 @@ def main(n_sols = 101):
     
     shared_problem = get_random_problems(tester_params['test_episodes'], env_params['problem_size'])
     
-    for i in range(n_sols):
-        if training_method == "Obj":
+    if training_method == "Obj":
+        for i in range(n_sols):
             pref = torch.zeros(2).cuda()
             pref[0] = 1 - 0.01 * i
             pref[1] = 0.01 * i
             pref = pref / torch.sum(pref)
-        else: 
-            pref = torch.zeros(1).cuda()
-            pref[0] = (torch.pi / 2) * i / (n_sols - 1)
-    
-        aug_score = tester.run(shared_problem,pref)
-        sols[i] = np.array(aug_score)
+            aug_score = tester.run(shared_problem,pref)
+            sols[i] = np.array(aug_score)
+    else: 
+        aug_score = tester.run(n_sols, shared_problem) # (n_sols, n_obj)
+        sols = aug_score.cpu().numpy()
     
     timer_end = time.time()
     
