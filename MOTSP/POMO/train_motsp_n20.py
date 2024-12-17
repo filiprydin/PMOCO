@@ -57,8 +57,8 @@ trainer_params = {
     'cuda_device_num': CUDA_DEVICE_NUM,
     'reference': [20, 20], # Only relevant if training method is "HV"
     'n_prefs': 20, # Only relevant if training method is "HV"
-    'epochs': 100,
-    'train_episodes': 5000,
+    'epochs': 20,
+    'train_episodes': 100,
     'train_batch_size': 64,
     'logging': {
         'model_save_interval': 5,

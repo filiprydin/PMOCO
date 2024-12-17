@@ -81,6 +81,8 @@ class TSPTesterHV:
 
             aug_score_imp, aug_score_exp = self._test_one_batch(shared_problem, prefs, batch_size, episode) 
             # (n_prefs, 2)
+
+            print(torch.all(aug_score_imp == aug_score_exp))
             
             # Update Y
             Y[:, 0, :] = Y[:, 0, :] + batch_size * aug_score_imp / test_num_episode
@@ -179,16 +181,23 @@ class TSPTesterHV:
         aug_score_exp[1] = reward_obj2_exp.float().mean()
 
         # Update proj_dists
+        lambda1 = torch.sin(pref) # Here we assume 2D objective
+        lambda2 = torch.cos(pref)
+        norm_const = torch.minimum(self.ref[0]/lambda1, self.ref[1]/lambda2) # Need to multiply with norm_const since we divided by it before
+
         proj_dists_exp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_exp)
         proj_dists_imp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_imp)
         
-        proj_dists_exp = proj_dists_exp.unsqueeze(1).expand(self.env.batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * self.env.batch_size, self.env.pomo_size)
-        proj_dists_imp = proj_dists_imp.unsqueeze(1).expand(self.env.batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * self.env.batch_size, self.env.pomo_size)
+        proj_dists_exp = proj_dists_exp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
+        proj_dists_imp = proj_dists_imp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
+
+        proj_dists_exp = proj_dists_exp * norm_const
+        proj_dists_imp = proj_dists_imp * norm_const
 
         if self.proj_dists is None:
-            self.proj_dists = torch.cat((proj_dists_exp, proj_dists_imp), dim=2)
+            self.proj_dists = torch.stack((proj_dists_exp, proj_dists_imp), dim=2)
         else: 
-            self.proj_dists = torch.cat((self.proj_dists, proj_dists_exp, proj_dists_imp), dim=2)
+            self.proj_dists = torch.cat((self.proj_dists, proj_dists_exp.unsqueeze(2), proj_dists_imp.unsqueeze(2)), dim=2)
 
         return aug_score_imp, aug_score_exp
      
@@ -220,9 +229,40 @@ class TSPTesterHV:
 
         return proj_dist, HV, HV_old
 
-    def _LSSA(Y):
-        Y1 = Y[:, :, 0]
-        Y2 = Y[:, :, 1]
+    def _LSSA(self, Y):
+        Y1 = Y[:, 0, :]
+        Y2 = Y[:, 1, :]
 
         Y = torch.cat((Y1, Y2), dim=0)
+        _, indices = torch.sort(Y[:, 0], dim=0)
+        Y = Y[indices]
         return Y
+
+        #print(Y)
+        Q_star = Y[::2, :]
+        #print(Q_star)
+        Q2 = Y[1::2, :]
+        #print(Q2)
+
+        while True:
+            # Step 4: Find x in Q* and y in Q2 that minimize f(Q* \ {x} \cup {y})
+            best_improvement = None
+            best_x, best_y = None, None
+
+            for x in Q_star:
+                for y in Q2:
+                    new_subset = torch.cat((Q_star[Q_star != x], y.unsqueeze(0)))
+                    new_quality = f(new_subset)
+
+                    if best_improvement is None or new_quality < best_improvement:
+                        best_improvement = new_quality
+                        best_x, best_y = x, y
+
+            # Step 5: Check if the new subset improves the quality
+            if best_improvement is not None and best_improvement < f(Q_star):
+                # Step 6: Update Q* and Q2
+                Q_star = torch.cat((Q_star[Q_star != best_x], best_y.unsqueeze(0)))
+                Q2 = torch.cat((Q2[Q2 != best_y], best_x.unsqueeze(0)))
+            else:
+                # Step 9: Output Q* and stop
+                return Q_star

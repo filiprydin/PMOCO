@@ -52,13 +52,13 @@ tester_params = {
     'use_cuda': USE_CUDA,
     'cuda_device_num': CUDA_DEVICE_NUM,
     'model_load': {
-        'path': './Final_result/HV',  # directory path of pre-trained model and log files saved.
+        'path': './Final_result/HV_20_2',  # directory path of pre-trained model and log files saved.
         'epoch': 100, 
     },
-    'reference': [15, 15], # Only relevant if training method is "HV"
-    'test_episodes': 40, 
-    'test_batch_size': 40,
-    'augmentation_enable': True,
+    'reference': [20, 20], # Only relevant if training method is "HV"
+    'test_episodes': 200, 
+    'test_batch_size': 200,
+    'augmentation_enable': False,
     'aug_factor': 64, #64,
     'aug_batch_size': 100 
 }
