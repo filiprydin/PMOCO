@@ -8,7 +8,7 @@ from MOTSPModel_HV import TSPModelHV as Model
 
 from MOTSProblemDef import get_random_problems, augment_xy_data_by_64_fold_2obj
 
-
+from hvwfg import wfg
 from einops import rearrange
 
 from utils.utils import *
@@ -103,7 +103,8 @@ class TSPTesterHV:
         Y_batch_imp = torch.zeros(self.n_prefs, 2) # Store average solutions for implicit inference
         Y_batch_exp = torch.zeros(self.n_prefs, 2) # Store average solutions for explicit inference
 
-        self.proj_dists = None
+        #self.proj_dists = None
+        self.sols = None
 
         for p in range(self.n_prefs):
             pref = prefs[p].unsqueeze(0)
@@ -148,14 +149,11 @@ class TSPTesterHV:
         
         # reward was negative, here we set it to positive
         reward = - reward
-        proj_dist, HV, HV_old = self._calculate_proj_distance_and_hv(pref, reward) 
+        proj_dist, HV, HV_old = self._calculate_proj_distance_and_hv(pref, reward, batch_size, aug_factor) 
         # (B, P)
-
-        ehvi = torch.ceil(HV - HV_old) # Current HV - previous HV, (B, P)
                         
-        omega = 1
-        R_exp = omega * proj_dist
-        R_imp = R_exp + ehvi * HV
+        R_exp = proj_dist
+        R_imp = HV - HV_old
 
         R_exp = R_exp.reshape(aug_factor, batch_size, self.env.pomo_size)
         R_imp = R_imp.reshape(aug_factor, batch_size, self.env.pomo_size)
@@ -180,29 +178,35 @@ class TSPTesterHV:
         aug_score_exp[0] = reward_obj1_exp.float().mean()
         aug_score_exp[1] = reward_obj2_exp.float().mean()
 
+        # Update saved solution set, sols: (B, 2*p, 2)
+        reward_exp = torch.cat((reward_obj1_exp, reward_obj2_exp), dim=1).unsqueeze(1)
+        reward_imp = torch.cat((reward_obj1_imp, reward_obj2_imp), dim=1).unsqueeze(1)
+
+        if self.sols is None:
+            self.sols = torch.cat((reward_exp, reward_imp), dim=1)
+        else:
+            self.sols = torch.cat((self.sols, reward_exp, reward_imp), dim=1)
+
+
         # Update proj_dists
-        lambda1 = torch.sin(pref) # Here we assume 2D objective
-        lambda2 = torch.cos(pref)
-        norm_const = torch.minimum(self.ref[0]/lambda1, self.ref[1]/lambda2) # Need to multiply with norm_const since we divided by it before
-
-        proj_dists_exp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_exp)
-        proj_dists_imp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_imp)
+        #proj_dists_exp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_exp)
+        #proj_dists_imp = rearrange(proj_dist.reshape(aug_factor, batch_size, self.env.pomo_size), 'c b h -> b (c h)').gather(1, max_idx_imp)
         
-        proj_dists_exp = proj_dists_exp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
-        proj_dists_imp = proj_dists_imp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
+        #proj_dists_exp = proj_dists_exp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
+        #proj_dists_imp = proj_dists_imp.expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
 
-        proj_dists_exp = proj_dists_exp * norm_const
-        proj_dists_imp = proj_dists_imp * norm_const
+        #proj_dists_exp = proj_dists_exp
+        #proj_dists_imp = proj_dists_imp
 
-        if self.proj_dists is None:
-            self.proj_dists = torch.stack((proj_dists_exp, proj_dists_imp), dim=2)
-        else: 
-            self.proj_dists = torch.cat((self.proj_dists, proj_dists_exp.unsqueeze(2), proj_dists_imp.unsqueeze(2)), dim=2)
+        #if self.proj_dists is None:
+        #    self.proj_dists = torch.stack((proj_dists_exp, proj_dists_imp), dim=2)
+        #else: 
+        #    self.proj_dists = torch.cat((self.proj_dists, proj_dists_exp.unsqueeze(2), proj_dists_imp.unsqueeze(2)), dim=2)
 
         return aug_score_imp, aug_score_exp
      
       ### HV functionality ###
-    def _calculate_proj_distance_and_hv(self, pref, obj_value):
+    def _calculate_proj_distance_and_hv(self, pref, obj_value, batch_size, aug_factor):
         # obj_value: (B, P, Nobj)
 
         # Projection distance for current preference
@@ -213,19 +217,39 @@ class TSPTesterHV:
         G_current = torch.min((ref_grouped - obj_value) / lambda_tot, dim=2).values
         proj_dist = torch.maximum(G_current, torch.zeros_like(G_current)) # (B, P)
 
-        if self.proj_dists is None:
-            proj_dists = proj_dist.unsqueeze(2)
+        #if self.proj_dists is None:
+        #    proj_dists = proj_dist.unsqueeze(2)
+        #    HV_old = 0
+        #else: 
+        #    proj_dists = torch.cat((self.proj_dists, proj_dist.unsqueeze(2)), dim=2) # Add current distance, (B, P, 2*p'-1)
+        #    HV_old = self.HV_const * torch.mean(torch.pow(self.proj_dists, 2), dim=2)
+        #    HV_old = HV_old / (self.ref[0]*self.ref[1])
+        
+        #HV = self.HV_const * torch.mean(torch.pow(proj_dists, 2), dim=2) # (B, P, p') -> (B, P)
+        #HV = HV / (self.ref[0]*self.ref[1])
+
+        if self.sols is None: 
             HV_old = 0
         else: 
-            proj_dists = torch.cat((self.proj_dists, proj_dist.unsqueeze(2)), dim=2) # Add current distance, (B, P, 2*p'-1)
-            HV_old = self.HV_const * torch.mean(torch.pow(self.proj_dists, 2), dim=2)
-            HV_old = HV_old / (self.ref[0]*self.ref[1])
-        
-        HV = self.HV_const * torch.mean(torch.pow(proj_dists, 2), dim=2) # (B, P, p') -> (B, P)
-        HV = HV / (self.ref[0]*self.ref[1])
+            HV_old = torch.zeros(batch_size)
 
-        norm_const = torch.minimum(self.ref[0]/lambda1, self.ref[1]/lambda2)
-        proj_dist = proj_dist /  norm_const # Normalize between 0 and 1
+            for b in range(batch_size):
+                sols = self.sols[b, :, :].cpu().numpy()
+                HV_old[b] = wfg(sols.astype(float), self.ref.cpu().numpy().astype(float))
+
+            HV_old = HV_old.unsqueeze(1).expand(batch_size, self.env.pomo_size).repeat(aug_factor, 1).reshape(aug_factor * batch_size, self.env.pomo_size)
+
+        HV = torch.zeros(self.env.batch_size, self.env.pomo_size)
+        for b in range(self.env.batch_size):
+            for p in range(self.env.pomo_size):
+                if self.sols is None:
+                    sols_tot = obj_value[b, p, :].unsqueeze(0).cpu().numpy()
+                else:
+                    batch_idx = b % batch_size
+                    sols = self.sols[batch_idx, :, :].cpu().numpy()
+                    sol = obj_value[b, p, :].unsqueeze(0).cpu().numpy()
+                    sols_tot = np.concat((sols, sol), axis=0)
+                HV[b, p] = wfg(sols_tot.astype(float), self.ref.cpu().numpy().astype(float))
 
         return proj_dist, HV, HV_old
 

@@ -236,7 +236,4 @@ class TSPTrainerHV:
         HV = self.HV_const * torch.mean(torch.pow(self.proj_dists, 2), dim=2) # (B, P, p') -> (B, P)
         HV = HV / (self.ref[0]*self.ref[1])
 
-        norm_const = torch.minimum(self.ref[0]/lambda1, self.ref[1]/lambda2)
-        proj_dist = proj_dist /  norm_const # Normalize between 0 and 1
-
         return proj_dist, HV
