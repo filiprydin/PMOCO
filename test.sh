@@ -5,6 +5,8 @@
 #SBATCH --gpus-per-node=A40:1
 
 # Load required modules
+module load virtualenv/20.23.1-GCCcore-12.3.0
+source venv/bin/activate
 module load SciPy-bundle/2023.07-gfbf-2023a
 module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
 module load PyTorch-Geometric/2.5.0-foss-2023a-PyTorch-2.1.2-CUDA-12.1.1
