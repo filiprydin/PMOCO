@@ -81,8 +81,6 @@ class TSPTesterHV:
 
             aug_score_imp, aug_score_exp = self._test_one_batch(shared_problem, prefs, batch_size, episode) 
             # (n_prefs, 2)
-
-            print(torch.all(aug_score_imp == aug_score_exp))
             
             # Update Y
             Y[:, 0, :] = Y[:, 0, :] + batch_size * aug_score_imp / test_num_episode
@@ -248,7 +246,7 @@ class TSPTesterHV:
                     batch_idx = b % batch_size
                     sols = self.sols[batch_idx, :, :].cpu().numpy()
                     sol = obj_value[b, p, :].unsqueeze(0).cpu().numpy()
-                    sols_tot = np.concat((sols, sol), axis=0)
+                    sols_tot = np.concatenate((sols, sol), axis=0)
                 HV[b, p] = wfg(sols_tot.astype(float), self.ref.cpu().numpy().astype(float))
 
         return proj_dist, HV, HV_old
@@ -260,33 +258,48 @@ class TSPTesterHV:
         Y = torch.cat((Y1, Y2), dim=0)
         _, indices = torch.sort(Y[:, 0], dim=0)
         Y = Y[indices]
-        return Y
+        Y = torch.unique(Y, dim=0)
+        Q_star = Y[:self.n_prefs, :]
+        Q2 = Y[self.n_prefs:, :]
 
-        #print(Y)
-        Q_star = Y[::2, :]
-        #print(Q_star)
-        Q2 = Y[1::2, :]
-        #print(Q2)
+        n_inc, _ = Q_star.shape
+        n_exc, _ = Q2.shape
 
         while True:
-            # Step 4: Find x in Q* and y in Q2 that minimize f(Q* \ {x} \cup {y})
             best_improvement = None
-            best_x, best_y = None, None
 
-            for x in Q_star:
-                for y in Q2:
-                    new_subset = torch.cat((Q_star[Q_star != x], y.unsqueeze(0)))
-                    new_quality = f(new_subset)
+            e1s = torch.zeros(n_inc)
+            for i in range(n_inc):
+                subset_wo_removed = torch.cat((Q_star[:i], Q_star[i+1:]))
+                e1s[i] = e(subset_wo_removed, Q_star[i])
 
-                    if best_improvement is None or new_quality < best_improvement:
-                        best_improvement = new_quality
-                        best_x, best_y = x, y
+            e2s = torch.zeros(n_exc)
+            for j in range(n_exc):
+                e2s[j] = e(Q_star, Q2[j])
 
-            # Step 5: Check if the new subset improves the quality
-            if best_improvement is not None and best_improvement < f(Q_star):
-                # Step 6: Update Q* and Q2
-                Q_star = torch.cat((Q_star[Q_star != best_x], best_y.unsqueeze(0)))
-                Q2 = torch.cat((Q2[Q2 != best_y], best_x.unsqueeze(0)))
+            es = -e1s[:, None] + e2s.T[None, :]
+
+            for i in range(n_inc):
+                for j in range(n_exc):
+                    U = 1 / torch.norm(Q_star[i] - Q2[j])
+                    new_change = es[i, j] - U
+
+                    if best_improvement is None or new_change > best_improvement:
+                        best_improvement = new_change
+                        best_i, best_j = i, j
+
+            if best_improvement is not None and best_improvement > 0:
+                subset_wo_removed = torch.cat((Q_star[:best_i], Q_star[best_i+1:]))
+                qstar_best_temp = Q_star[best_i]
+                Q_star = torch.cat((subset_wo_removed, Q2[best_j,:].unsqueeze(0)))
+                exc_subset_wo_removed = torch.cat((Q2[:best_j], Q2[best_j+1:]))
+                Q2 = torch.cat((exc_subset_wo_removed, qstar_best_temp.unsqueeze(0)))
             else:
-                # Step 9: Output Q* and stop
-                return Q_star
+                _, indices = torch.sort(Q_star[:, 0], dim=0)
+                return Q_star[indices]
+
+def e(Q_star, x):
+    # Compute pairwise distances
+    diff = Q_star - x
+    norm = torch.norm(diff, dim=1)
+    return torch.sum(1/norm)
