@@ -252,16 +252,14 @@ class TSPTesterHV:
         return proj_dist, HV, HV_old
 
     def _LSSA(self, Y):
-        Y1 = Y[:, 0, :]
-        Y2 = Y[:, 1, :]
 
-        Y = torch.cat((Y1, Y2), dim=0)
-        _, indices = torch.sort(Y[:, 0], dim=0)
-        Y = Y[indices]
-        Y = torch.unique(Y, dim=0)
-
-        Q_star = Y[:self.n_prefs, :]
-        Q2 = Y[self.n_prefs:, :]
+        Q_star = Y[:, 0, :]
+        Q_star = torch.unique(Q_star, dim=0)
+        Q2 = Y[:, 1, :]
+        Q2 = torch.unique(Q2, dim=0)
+        while Q_star.shape[0] < self.n_prefs:
+            Q_star = torch.cat((Q_star, Q2[0, :].unsqueeze(0)), dim=0)
+            Q2 = Q2[1:, :]
 
         n_inc, _ = Q_star.shape
         n_exc, _ = Q2.shape
@@ -295,6 +293,7 @@ class TSPTesterHV:
                 Q2 = torch.cat((exc_subset_wo_removed, qstar_best_temp.unsqueeze(0)))
             else:
                 _, indices = torch.sort(Q_star[:, 0], dim=0)
+
                 return Q_star[indices]
 
 def e(Q_star, x):
