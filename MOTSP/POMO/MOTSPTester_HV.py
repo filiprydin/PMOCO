@@ -259,11 +259,14 @@ class TSPTesterHV:
         _, indices = torch.sort(Y[:, 0], dim=0)
         Y = Y[indices]
         Y = torch.unique(Y, dim=0)
+
         Q_star = Y[:self.n_prefs, :]
         Q2 = Y[self.n_prefs:, :]
 
         n_inc, _ = Q_star.shape
         n_exc, _ = Q2.shape
+
+        Us = 1 / torch.norm(Q_star[:, None, :] - Q2[None, :, :], dim=2)
 
         while True:
             best_improvement = None
@@ -277,16 +280,12 @@ class TSPTesterHV:
             for j in range(n_exc):
                 e2s[j] = e(Q_star, Q2[j])
 
-            es = -e1s[:, None] + e2s.T[None, :]
+            improvements = e1s[:, None] - e2s[None, :] + Us
 
-            for i in range(n_inc):
-                for j in range(n_exc):
-                    U = 1 / torch.norm(Q_star[i] - Q2[j])
-                    new_change = es[i, j] - U
-
-                    if best_improvement is None or new_change > best_improvement:
-                        best_improvement = new_change
-                        best_i, best_j = i, j
+            best_improvement = torch.max(improvements)
+            best_i, best_j = (improvements == best_improvement).nonzero(as_tuple=True)
+            best_i = best_i[0]
+            best_j = best_j[0]
 
             if best_improvement is not None and best_improvement > 0:
                 subset_wo_removed = torch.cat((Q_star[:best_i], Q_star[best_i+1:]))
