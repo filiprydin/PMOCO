@@ -56,8 +56,8 @@ tester_params = {
         'epoch': 100, 
     },
     'reference': [20, 20], # Only relevant if training method is "HV"
-    'test_episodes': 20, 
-    'test_batch_size': 20,
+    'test_episodes': 100, 
+    'test_batch_size': 100,
     'augmentation_enable': False,
     'aug_factor': 64, #64,
     'aug_batch_size': 100 
