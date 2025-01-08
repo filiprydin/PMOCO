@@ -252,6 +252,7 @@ class TSPTesterHV:
         return proj_dist, HV, HV_old
 
     def _LSSA(self, Y):
+        c = 4
 
         Q_star = Y[:, 0, :]
         Q_star = torch.unique(Q_star, dim=0)
@@ -264,19 +265,19 @@ class TSPTesterHV:
         n_inc, _ = Q_star.shape
         n_exc, _ = Q2.shape
 
-        Us = 1 / torch.norm(Q_star[:, None, :] - Q2[None, :, :], dim=2)
-
         while True:
             best_improvement = None
+
+            Us = 1 / torch.pow(torch.norm(Q_star[:, None, :] - Q2[None, :, :], dim=2),c)
 
             e1s = torch.zeros(n_inc)
             for i in range(n_inc):
                 subset_wo_removed = torch.cat((Q_star[:i], Q_star[i+1:]))
-                e1s[i] = e(subset_wo_removed, Q_star[i])
+                e1s[i] = e(subset_wo_removed, Q_star[i], c)
 
             e2s = torch.zeros(n_exc)
             for j in range(n_exc):
-                e2s[j] = e(Q_star, Q2[j])
+                e2s[j] = e(Q_star, Q2[j], c)
 
             improvements = e1s[:, None] - e2s[None, :] + Us
 
@@ -296,8 +297,15 @@ class TSPTesterHV:
 
                 return Q_star[indices]
 
-def e(Q_star, x):
+def e(Q_star, x, c):
     # Compute pairwise distances
     diff = Q_star - x
-    norm = torch.norm(diff, dim=1)
+    norm = torch.pow(torch.norm(diff, dim=1),c)
     return torch.sum(1/norm)
+
+def U(Q_star, c):
+    diff = Q_star[:, None, :] - Q_star[None, :, :]
+    norm = torch.pow(torch.norm(diff, dim=2),c)
+    norm[norm == 0] = torch.inf
+    U = torch.sum(1/norm)
+    return U
